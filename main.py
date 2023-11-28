@@ -1,10 +1,10 @@
-import sys, pygame
+import sys, pygame, os
 from settings import *
 from level import *
 
 class Game:
   def __init__(self):
-    pygame.init()
+    pygame.init() 
     self.SCREEN = pygame.display.set_mode(SCREEN_DIMENSIONS)
     pygame.display.set_caption(WINDOW_TITLE)
     self.CLOCK = pygame.time.Clock()
@@ -22,7 +22,7 @@ class Game:
       dt = self.CLOCK.tick(FPS) / 1000
 
       self.LEVEL.run(dt)
-      
+
       pygame.display.update()
 
 if __name__ == '__main__':
