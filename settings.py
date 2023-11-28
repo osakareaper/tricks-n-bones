@@ -1,0 +1,7 @@
+# Settings Document
+
+WINDOW_TITLE = "Tricks n' Bones"
+
+SCREEN_DIMENSIONS = (SCREEN_WIDTH,SCREEN_HEIGHT) = (640, 480)
+
+FPS = 60
