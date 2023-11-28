@@ -49,8 +49,8 @@ class Level:
     self.display_surface.blit(FONT.render("BONES: " + str(self.PLAYER.bones), 1, (255,255,255)), (110,620))
     self.display_surface.blit(FONT.render("SCORE: " + str(self.PLAYER.score), 1, (255,255,255)), (600,620))
 
-    for y in range(0,15):
-      for x in range(0,19):
+    for y in range(0,30):
+      for x in range(0,38):
         if m[y][x]=="0":
           self.display_surface.blit(empty_square,(x*SQUARE_SIZE,y*SQUARE_SIZE))
         #elif m[y][x]=="1":

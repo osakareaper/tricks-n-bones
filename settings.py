@@ -6,7 +6,7 @@ pygame.font.init()
 WINDOW_TITLE = "Tricks n' Bones"
 
 SCREEN_DIMENSIONS = (SCREEN_WIDTH,SCREEN_HEIGHT) = (760, 680)
-SQUARE_SIZE = 40
+SQUARE_SIZE = 20
 
 FPS = 60
 
