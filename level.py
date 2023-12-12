@@ -3,6 +3,7 @@ from settings import *
 from settings import Maps
 from my_libraries.player import Player
 from my_libraries.startMenu import StartMenu
+from my_libraries.gameOver import GameOver
 
 # Sounds
 
@@ -31,11 +32,14 @@ class Level():
     self.display_surface = pygame.display.get_surface()
     self.PLAYER = Player()
     self.STARTMENU = StartMenu()
+    self.GAMEOVER = GameOver()
     self.maps_instance = Maps()
 
   def run(self, dt):
+    # start menu
     self.STARTMENU.run()
 
+    # game
     self.display_surface.fill('black')
     self.display_surface.blit(FONT.render("LIFES: " + str(self.PLAYER.lifes), 1, (255,255,255)), (20,620))
     self.display_surface.blit(FONT.render("BONES: " + str(self.PLAYER.bones), 1, (255,255,255)), (110,620))
@@ -139,17 +143,7 @@ class Level():
 
             if self.PLAYER.lifes==0:
 
-                self.PLAYER.lifes=3
-                self.maps_instance.level_i = 0
-                
-                self.maps_instance.VALUES_XY = open("assets/levels/"+self.maps_instance.level_names[self.maps_instance.level_i]+".txt","r").read().splitlines()[30].split(" ")
-                self.maps_instance.m = list(map(lambda x:list(x),open("assets/levels/"+self.maps_instance.level_names[self.maps_instance.level_i]+".txt","r").read().splitlines()))
-                
-                self.maps_instance.X_BEGIN = int(self.maps_instance.VALUES_XY[0])*SQUARE_SIZE
-                self.maps_instance.Y_BEGIN = int(self.maps_instance.VALUES_XY[1])*SQUARE_SIZE
-                
-                self.PLAYER.posX= self.maps_instance.X_BEGIN
-                self.PLAYER.posY= self.maps_instance.Y_BEGIN
+              self.GAMEOVER.run()
     
             else:
                 
