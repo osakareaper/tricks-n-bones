@@ -1,6 +1,6 @@
 import sys, pygame, os
 from settings import *
-from level import *
+from level import Level
 
 class Game:
   def __init__(self):
@@ -13,18 +13,14 @@ class Game:
   # MAIN LOOP
   def run(self):
     while True:
-      for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-          pygame.quit()
-          sys.exit()
-
       # Delta Time
       dt = self.CLOCK.tick(FPS) / 1000
 
+      # Run
       self.LEVEL.run(dt)
 
       pygame.display.update()
-
+  
 if __name__ == '__main__':
   game = Game()
   game.run()
