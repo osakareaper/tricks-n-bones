@@ -1,9 +1,9 @@
 import pygame, sys
 from settings import *
 from settings import Maps
-from my_libraries.player import Player
-from my_libraries.startMenu import StartMenu
-from my_libraries.gameOver import GameOver
+from Model.player import Player
+from View.startMenu import StartMenu
+from View.gameOver import GameOver
 
 # Sounds
 
