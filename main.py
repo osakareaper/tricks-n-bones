@@ -9,13 +9,12 @@ class Game:
     pygame.display.set_caption(WINDOW_TITLE)
     self.CLOCK = pygame.time.Clock()
     self.LEVEL = Level()
-  
+
   # MAIN LOOP
   def run(self):
     while True:
       # Delta Time
       dt = self.CLOCK.tick(FPS) / 1000
-
       # Run
       self.LEVEL.run(dt)
 

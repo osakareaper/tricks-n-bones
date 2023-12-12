@@ -2,6 +2,7 @@ import pygame, sys
 from settings import *
 from settings import Maps
 from my_libraries.player import Player
+from my_libraries.startMenu import StartMenu
 
 # Sounds
 
@@ -29,9 +30,12 @@ class Level():
     # get the display surface
     self.display_surface = pygame.display.get_surface()
     self.PLAYER = Player()
+    self.STARTMENU = StartMenu()
     self.maps_instance = Maps()
 
   def run(self, dt):
+    self.STARTMENU.run()
+
     self.display_surface.fill('black')
     self.display_surface.blit(FONT.render("LIFES: " + str(self.PLAYER.lifes), 1, (255,255,255)), (20,620))
     self.display_surface.blit(FONT.render("BONES: " + str(self.PLAYER.bones), 1, (255,255,255)), (110,620))
@@ -75,6 +79,38 @@ class Level():
             elif self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int((self.PLAYER.posX-SQUARE_SIZE)/SQUARE_SIZE)] == CHAO:
               self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int((self.PLAYER.posX-SQUARE_SIZE)/SQUARE_SIZE)] = LAVA
 
+        if event.key == pygame.K_DOWN:
+          # Se nao for PAREDE, se move
+          if self.maps_instance.m[int((self.PLAYER.posY+SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] != PAREDE:
+            self.PLAYER.posY += SQUARE_SIZE
+            
+            # Se for PEDRA
+            if self.maps_instance.m[int((self.PLAYER.posY-SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] == PEDRA:
+              scoreUp.play()
+              self.PLAYER.score += 100
+              self.PLAYER.score_aux += 100
+              self.maps_instance.m[int((self.PLAYER.posY-SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] = CHAO
+
+            # Se for CHÃO
+            elif self.maps_instance.m[int((self.PLAYER.posY-SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] == CHAO:
+              self.maps_instance.m[int((self.PLAYER.posY-SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] = LAVA
+
+        if event.key == pygame.K_UP:
+          # Se nao for PAREDE, se move
+          if self.maps_instance.m[int((self.PLAYER.posY-SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] != PAREDE:
+            self.PLAYER.posY -= SQUARE_SIZE
+            
+            # Se for PEDRA
+            if self.maps_instance.m[int((self.PLAYER.posY+SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] == PEDRA:
+              scoreUp.play()
+              self.PLAYER.score += 100
+              self.PLAYER.score_aux += 100
+              self.maps_instance.m[int((self.PLAYER.posY+SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] = CHAO
+
+            # Se for CHÃO
+            elif self.maps_instance.m[int((self.PLAYER.posY+SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] == CHAO:
+              self.maps_instance.m[int((self.PLAYER.posY+SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] = LAVA      
+
     # LEVEL CONSTRUCTOR
     for y in range(0,30):
       for x in range(0,38):
@@ -101,7 +137,7 @@ class Level():
             self.PLAYER.score -= self.PLAYER.score_aux
             self.PLAYER.score_aux = 0
 
-            if self.PLAYER.lifes==-1:
+            if self.PLAYER.lifes==0:
 
                 self.PLAYER.lifes=3
                 self.maps_instance.level_i = 0
@@ -123,6 +159,7 @@ class Level():
             
         else:
 
+            self.PLAYER.bones += 1
             self.PLAYER.score_aux = 0
             self.maps_instance.level_i+=1
             nextLevel.play()

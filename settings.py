@@ -20,11 +20,13 @@ PEDRA = "5"
 
 # Importação da FOnte
 FONT = pygame.font.Font(os.path.join('assets', 'fonts', 'Pixeled.ttf'), 12)
+TITLE_FONT = pygame.font.Font(os.path.join('assets', 'fonts', 'Pixeled.ttf'), 16)
 
 # COLORS
 
 FLOOR_COLOR = (108,117,125)
 
+# Leitura dos Mapas
 class Maps():
   def __init__(self):
     self.level_names = ["level1","level2","level3","level4","level5","level6","level7","level8","level9","level10","level11","level12","level13","level14","level15","level16"]
