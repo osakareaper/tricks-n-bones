@@ -59,6 +59,7 @@ class levelConstructor:
               self.maps_instance.level_i+=1
 
               if self.maps_instance.level_i == 16:
+                insert_player(self.PLAYER)
                 self.win_instance.draw()
 
               else:

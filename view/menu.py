@@ -31,12 +31,17 @@ class StartMenu():
             self.menu_instance = 2
             players = get_players()
             players.sort(key=lambda player:player[1])
+
             while self.menu_instance == 2:
               self.display_surface.fill('black')
               self.display_surface.blit(TITLE_FONT.render("SCOREBOARD", 1, (0,255,0)), (320,50))
-              for player in players[:10]:
-                  self.display_surface.blit(FONT.render(player[0], 1, (255, 255, 255)), (320, 100))
-                  self.display_surface.blit(FONT.render(str(player[1]), 1, (255, 255, 255)), (600, 100))
+              y_pos = 100
+
+              for player in players[:5]:
+                  self.display_surface.blit(FONT.render(player[0], 1, (255, 255, 255)), (320, y_pos))
+                  self.display_surface.blit(FONT.render(str(player[1]), 1, (255, 255, 255)), (600, y_pos))
+                  y_pos+=50
+
               self.display_surface.blit(FONT.render("press BKSPC to go back", 1, (255,255,255)), (305,540))
       
               pygame.display.update()
