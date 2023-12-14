@@ -1,4 +1,5 @@
 import pygame
+from model.sqlite import *
 from controller.settings import *
 from view.sprites import *
 from view.sounds import *
@@ -34,7 +35,6 @@ class levelConstructor:
       if self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] in ["1","3"]:
           
           if self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)]=="1":
-
               death.play()
               self.PLAYER.lifes-=1
               self.PLAYER.score -= self.PLAYER.score_aux
@@ -43,7 +43,7 @@ class levelConstructor:
               self.PLAYER.key = 0
 
               if self.PLAYER.lifes==0:
-
+                insert_player(self.PLAYER)
                 self.GAMEOVER.draw()
       
               else:

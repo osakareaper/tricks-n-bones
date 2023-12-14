@@ -1,4 +1,5 @@
-import pygame, sys
+import pygame, sys, sqlite3
+from model.sqlite import *
 from model.player import Player
 from view.menu import StartMenu
 from view.gameOver import GameOver
@@ -12,7 +13,7 @@ from controller.mapReader import *
 from controller.nickGenerator import*
 
 class Level():
-
+ 
   def __init__(self):
     # get the display surface
     self.menu = 1
@@ -26,9 +27,10 @@ class Level():
     self.win_instance = Win(self.PLAYER)
     self.LEVELCONSTRUCTOR = levelConstructor(self.PLAYER, self.maps_instance, self.gameover_instance, self.win_instance)
     self.DRAW = Draw(self.display_surface, self.PLAYER, self.maps_instance)
-
+    
   def run(self):
-
+    db_init()
+    
     # start menu
     self.STARTMENU.draw()
 
