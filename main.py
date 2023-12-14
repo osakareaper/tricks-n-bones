@@ -1,6 +1,6 @@
-import sys, pygame, os
-from settings import *
-from level import Level
+import pygame
+from controller.settings import *
+from controller.level import Level
 
 class Game:
   def __init__(self):
@@ -12,11 +12,10 @@ class Game:
 
   # MAIN LOOP
   def run(self):
+    
     while True:
-      # Delta Time
-      dt = self.CLOCK.tick(FPS) / 1000
       # Run
-      self.LEVEL.run(dt)
+      self.LEVEL.run()
 
       pygame.display.update()
   
