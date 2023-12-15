@@ -30,7 +30,7 @@ class StartMenu():
           if event.key == pygame.K_BACKSPACE:
             self.menu_instance = 2
             players = get_players()
-            players.sort(key=lambda player:player[1])
+            players.sort(reverse=True, key=lambda player:player[1])
 
             while self.menu_instance == 2:
               self.display_surface.fill('black')
