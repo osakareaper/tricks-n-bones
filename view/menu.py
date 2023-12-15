@@ -24,15 +24,11 @@ class StartMenu():
       esc = FONT.render("press ESC to exit", 1, (255,0,0))
       esc_rect = esc.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT//2+100))
 
-      options = FONT.render("press Q to options", 1, (255,255,255))
-      options_rect = options.get_rect(center=(650,650))
-
       self.display_surface.fill('black')
       self.display_surface.blit(title, title_rect)
       self.display_surface.blit(play, play_rect)
       self.display_surface.blit(scoreboard, scoreboard_rect)
       self.display_surface.blit(esc, esc_rect)
-      self.display_surface.blit(options, options_rect)
       pygame.display.update()
 
       for event in pygame.event.get():
