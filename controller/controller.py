@@ -1,6 +1,7 @@
 import pygame, random
 from controller.settings import *
 from view.sounds import *
+from view.sprites import *
 
 class Controller():
   def __init__(self, player_instance, maps_instance):
@@ -16,6 +17,7 @@ class Controller():
               # Se nao for PAREDE, se move
               if self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int((self.PLAYER.posX-SQUARE_SIZE)/SQUARE_SIZE)] != PAREDE:
                 self.PLAYER.posX -= SQUARE_SIZE
+                self.player_instance.player = player_left
                 walk.play()
                 
                 # Se for PEDRA
@@ -27,12 +29,15 @@ class Controller():
 
               # Se for CHÃO
                 elif self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int((self.PLAYER.posX+SQUARE_SIZE)/SQUARE_SIZE)] == CHAO:
+                  self.PLAYER.score += 10
+                  self.PLAYER.score_aux += 10
                   self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int((self.PLAYER.posX+SQUARE_SIZE)/SQUARE_SIZE)] = LAVA
 
             if event.key == pygame.K_RIGHT:
               # Se nao for PAREDE, se move
               if self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int((self.PLAYER.posX+SQUARE_SIZE)/SQUARE_SIZE)] != PAREDE:
                 self.PLAYER.posX += SQUARE_SIZE
+                self.player_instance.player = player_right
                 walk.play()
                 
                 # Se for PEDRA
@@ -44,6 +49,8 @@ class Controller():
               
                 # Se for CHÃO
                 elif self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int((self.PLAYER.posX-SQUARE_SIZE)/SQUARE_SIZE)] == CHAO:
+                  self.PLAYER.score += 10
+                  self.PLAYER.score_aux += 10
                   self.maps_instance.m[int(self.PLAYER.posY/SQUARE_SIZE)][int((self.PLAYER.posX-SQUARE_SIZE)/SQUARE_SIZE)] = LAVA
 
             if event.key == pygame.K_DOWN:
@@ -61,6 +68,8 @@ class Controller():
 
                 # Se for CHÃO
                 elif self.maps_instance.m[int((self.PLAYER.posY-SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] == CHAO:
+                  self.PLAYER.score += 10
+                  self.PLAYER.score_aux += 10
                   self.maps_instance.m[int((self.PLAYER.posY-SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] = LAVA
 
             if event.key == pygame.K_UP:
@@ -78,4 +87,6 @@ class Controller():
 
                 # Se for CHÃO
                 elif self.maps_instance.m[int((self.PLAYER.posY+SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] == CHAO:
+                  self.PLAYER.score += 10
+                  self.PLAYER.score_aux += 10
                   self.maps_instance.m[int((self.PLAYER.posY+SQUARE_SIZE)/SQUARE_SIZE)][int(self.PLAYER.posX/SQUARE_SIZE)] = LAVA      

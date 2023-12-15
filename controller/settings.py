@@ -6,6 +6,7 @@ import pygame, os
 pygame.font.init()
 FONT = pygame.font.Font(os.path.join('assets', 'fonts', 'Pixeled.ttf'), 12)
 TITLE_FONT = pygame.font.Font(os.path.join('assets', 'fonts', 'Pixeled.ttf'), 16)
+GAMETITLE_FONT = pygame.font.Font(os.path.join('assets', 'fonts', 'BitPap.ttf'), 60)
 
 # Screen Settings
 WINDOW_TITLE = "Tricks n' Bones"

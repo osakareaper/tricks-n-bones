@@ -1,4 +1,5 @@
 import pygame
+from view.sprites import *
 
 class Player:
   def __init__(self, maps_instance, nick_generator_instance):
@@ -13,6 +14,6 @@ class Player:
     self.lifes = 3
     self.bones = 0
 
-    self.player = pygame.image.load("assets/graphics/player.png")
+    self.player = player_left
     self.posX = self.maps_instance.X_BEGIN
     self.posY = self.maps_instance.Y_BEGIN

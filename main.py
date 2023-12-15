@@ -12,7 +12,7 @@ class Game:
 
   # MAIN LOOP
   def run(self):
-    
+  
     while True:
       # Run
       self.LEVEL.run()
