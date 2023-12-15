@@ -34,9 +34,13 @@ class Player:
             return "Tricky"
 
     def update_nickname(self):
+        nickname = ""
         root = tk.Tk()
         root.withdraw()
 
-        nickname = simpledialog.askstring("Nickname", "Choose your Nickname:")
-        return self.set_nickname(nickname) if nickname else "Tricky"
+        while not nickname:
+            nickname = simpledialog.askstring("Nickname", "Choose your Nickname:")
+            root.update()
 
+        return self.set_nickname(nickname) if nickname else "Tricky"
+    
