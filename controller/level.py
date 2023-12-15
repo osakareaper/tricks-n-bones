@@ -10,7 +10,6 @@ from controller.settings import *
 from controller.controller import *
 from controller.levelConstructor import *
 from controller.mapReader import *
-from controller.nickGenerator import*
 
 class Level():
  
@@ -20,8 +19,7 @@ class Level():
     self.display_surface = pygame.display.get_surface()
     self.maps_instance = Maps()
     self.STARTMENU = StartMenu(self.menu)
-    self.NICKGENERATOR = NickGenerator()
-    self.PLAYER = Player(self.maps_instance, self.NICKGENERATOR)
+    self.PLAYER = Player(self.maps_instance)
     self.CONTROLLER = Controller(self.PLAYER, self.maps_instance)
     self.gameover_instance = GameOver(self.PLAYER)
     self.win_instance = Win(self.PLAYER)
