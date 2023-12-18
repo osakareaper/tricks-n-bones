@@ -10,12 +10,29 @@ class Win():
 
   def draw(self):
     while self.menu == 1:
+
+      win = BIGGER_FONT.render("YOU WIN!", 1, (0,255,0))
+      win_rect = win.get_rect(center=(SCREEN_WIDTH//2,SCREEN_HEIGHT//2-250))
+
+
+      playername = TITLE_FONT.render(str(self.player_instance.nick), 1, (0,255,0))
+      playername_rect = playername.get_rect(center=(SCREEN_WIDTH//2,SCREEN_HEIGHT//2-100))
+
+      yourscore = FONT.render("Your SCORE was:", 1, (255,255,255))
+      yourscore_rect = yourscore.get_rect(center=(SCREEN_WIDTH//2,SCREEN_HEIGHT//2-50))
+
+      score = FONT.render(str(self.player_instance.score), 1, ('yellow'))
+      score_rect = score.get_rect(center=(SCREEN_WIDTH//2,SCREEN_HEIGHT//2-25))
+
+      esc = FONT.render("press ESC to exit", 1, (255,255,255))
+      esc_rect = esc.get_rect(center=(SCREEN_WIDTH//2, 600))
+
       self.display_surface.fill('black')
-      self.display_surface.blit(TITLE_FONT.render("YOU WIN!", 1, (0,255,0)), (340,SCREEN_HEIGHT/2-150))
-      self.display_surface.blit(FONT.render("press ESC to exit", 1, (255,255,255)), (305,SCREEN_HEIGHT/2-100))
-      self.display_surface.blit(TITLE_FONT.render(str(self.player_instance.nick), 1, (0,255,0)), (320,SCREEN_HEIGHT/2))
-      self.display_surface.blit(FONT.render("Your SCORE was:", 1, (255,255,255)), (330,SCREEN_HEIGHT/2+50))
-      self.display_surface.blit(FONT.render(str(self.player_instance.score), 1, ('yellow')), (SCREEN_WIDTH/2,SCREEN_HEIGHT/2+75))
+      self.display_surface.blit(win, win_rect)
+      self.display_surface.blit(playername, playername_rect)
+      self.display_surface.blit(yourscore, yourscore_rect)
+      self.display_surface.blit(score, score_rect)
+      self.display_surface.blit(esc, esc_rect)
       pygame.display.update()
 
       for event in pygame.event.get():
